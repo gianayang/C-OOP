@@ -136,22 +136,22 @@ int main() {
 	cout << "q points to where " << *q << " is stored\n";
 	cout << "*q contains " << *q << endl;
 
-	/*double d(33.44);
+	double d(33.44);
 	double* pD(&d);
 	*pD = *p;
 	*pD = 73.2343;
 	*p = *pD;
-	*q = *p;*/
-	//pD = p;
-	//p = pD;
+	*q = *p;
+	pD = p;
+	p = pD;
 
-	int joe = 24;
-	const int sal = 19;
-	int*  pI;
-	pI = &joe;  
-	*pI = 234;  
-	//pI = &sal;  const int cannot be assigned to int pointer
-	*pI = 7623;    
+	//int joe = 24;
+	//const int sal = 19;
+	//int*  pI;
+	//pI = &joe;  
+	//*pI = 234;  
+	////pI = &sal;  const int cannot be assigned to int pointer
+	//*pI = 7623;    
 
 	const int* pcI;
 	pcI = &joe;  
@@ -162,10 +162,10 @@ int main() {
 	/*int* const cpI;
 	int* const cpI(&joe);
 	int* const cpI(&sal);
-	cpI = &joe;  */
-	// *cpI = 234;  
-	//  cpI = &sal;  
-	// *cpI = 7623;    
+	cpI = &joe;  
+	 *cpI = 234;  
+	  cpI = &sal;  
+	 *cpI = 7623;    */
 
 	//const int* const cpcI;
 	//const int* const cpcI(&joe);
