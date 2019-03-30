@@ -15,6 +15,7 @@ namespace WarriorCraft {
 		void battle(Noble& enemy);
 		bool hire(Warrior& warrior);
 		void fire(Warrior& warrior);
+		void changeStrength(int);
 
 	private:
 		std::string name;

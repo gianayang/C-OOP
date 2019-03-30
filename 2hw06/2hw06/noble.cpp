@@ -21,34 +21,22 @@ namespace WarriorCraft {
 			double enemyStrength = enemy.calculateStrength();
 			if (ourStrength > enemyStrength) {
 				double ratio = 1 - (enemyStrength / ourStrength);
-				for (Warrior* warrior : army) {
-					warrior->changeStrength(ratio);
-				}
-				for (Warrior* warrior : enemy.army) {
-					warrior->changeStrengthtoZero();
-				}
+				this->changeStrength(ratio);
+				enemy.changeStrength(0);
 				enemy.dead = true;
 				cout << name << " defeats " << enemy.name << endl;
 			}
 			else if (ourStrength == enemyStrength) {//both dead
-				for (Warrior* warrior : enemy.army) {
-					warrior->changeStrengthtoZero();
-				}
+				enemy.changeStrength(0);
 				enemy.dead = true;
-				for (Warrior* warrior : army) {
-					warrior->changeStrengthtoZero();
-				}
+				this->changeStrength(0);
 				dead = true;
 				cout << "Mutual Annihalation : " << name << " and " << enemy.name << " die at each other's hands" << endl;
 			}
 			else {  //enemy wins
 				double ratio = 1 - (ourStrength / enemyStrength);
-				for (Warrior* warrior : army) {
-					warrior->changeStrengthtoZero();
-				}
-				for (Warrior* warrior : enemy.army) {
-					warrior->changeStrength(ratio);
-				}
+				this->changeStrength(0);
+				enemy.changeStrength(ratio);
 				dead = true;
 				cout << enemy.name << " defeats " << name << endl;
 			}
@@ -65,6 +53,7 @@ namespace WarriorCraft {
 		}
 		return false;
 	}
+	
 
 	void Noble::fire(Warrior& warrior) {				// a Noble tries to fire a warrior
 		if (!dead) {
@@ -95,6 +84,20 @@ namespace WarriorCraft {
 		else {
 			cerr << name << "can't fire because he's dead!" << endl;
 		}
+	}
+
+	void Noble::changeStrength(int ratio) { //pass in 0 if the noble is going to die
+		if (ratio == 0) {
+			for (Warrior* warrior : army) {
+				warrior->changeStrengthtoZero();
+			}
+		}
+		else {
+			for (Warrior* warrior : army) {
+				warrior->changeStrength(ratio);
+			}
+		}
+		
 	}
 
 	double Noble::calculateStrength()const {			//measuring army strength for the battle
