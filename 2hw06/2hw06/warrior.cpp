@@ -35,8 +35,10 @@ namespace WarriorCraft {
 		strength = 0;
 	}
 	void Warrior::runaway() {
-		boss->fire(*this);
-		boss = nullptr;
+		if (boss != nullptr) {
+			boss->fire(*this);
+			boss = nullptr;
+		}
 	}
 	ostream& operator << (ostream& os, const Warrior& warrior) {   //output operator to display the status
 		os << "	" << warrior.getName() << ": " << warrior.getStrength() << endl;
